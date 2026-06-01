@@ -3,17 +3,28 @@ import numpy as np
 from collections import deque
 import threading
 import json
+import os
 from datetime import datetime
 
 # ── Config ─────────────────────────────────────────────────
 PRE_MS        = 200
 POST_MS       = 1000
 CHANNEL_NAMES = ['F3', 'F4', 'C3', 'Cz', 'C4', 'P3', 'P4']
-SAVE_FILE     = f'epochs_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
+
+# ── Folder setup ────────────────────────────────────────────
+SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
+SESSION_NAME = f'epochs_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
+SESSION_DIR  = os.path.join(SCRIPT_DIR, SESSION_NAME)
+os.makedirs(SESSION_DIR, exist_ok=True)
+
+NPY_PATH  = os.path.join(SESSION_DIR, f'{SESSION_NAME}.npy')
+JSON_PATH = os.path.join(SESSION_DIR, f'{SESSION_NAME}_meta.json')
+
+print(f"Session folder: {SESSION_DIR}\n")
 
 # ── Connect to EEG stream ───────────────────────────────────
 print("Looking for EEG stream...")
-streams = pylsl.resolve_stream('type', 'EEG', timeout=10)
+streams = pylsl.resolve_byprop('type', 'EEG', timeout=10)
 if not streams:
     print("No EEG stream found. Is the X.on app streaming?")
     exit()
@@ -42,7 +53,6 @@ trigger_flag  = threading.Event()
 stop_flag     = threading.Event()
 collecting    = False
 post_buf      = []
-current_trigger_time = None
 
 # ── Keyboard listener ───────────────────────────────────────
 def keyboard_listener():
@@ -65,7 +75,7 @@ def save():
         return
 
     data = np.array(epochs)  # shape: (n_epochs, n_channels, n_samples)
-    np.save(f'{SAVE_FILE}.npy', data)
+    np.save(NPY_PATH, data)
 
     meta = {
         'srate':         srate,
@@ -76,52 +86,43 @@ def save():
         'n_epochs':      len(epochs),
         'trigger_times': trigger_times,
     }
-    with open(f'{SAVE_FILE}_meta.json', 'w') as f:
+    with open(JSON_PATH, 'w') as f:
         json.dump(meta, f, indent=2)
 
-    print(f"\nSaved {len(epochs)} epochs → {SAVE_FILE}.npy")
-    print(f"Metadata         → {SAVE_FILE}_meta.json")
+    print(f"\nSaved {len(epochs)} epochs to:")
+    print(f"  Data:     {NPY_PATH}")
+    print(f"  Metadata: {JSON_PATH}")
 
 # ── Main loop ───────────────────────────────────────────────
 try:
     while not stop_flag.is_set():
 
-        # pull latest samples into rolling buffer
         samples, timestamps = inlet.pull_chunk(timeout=0.01, max_samples=32)
 
         for sample, ts in zip(samples, timestamps):
-            
+
             if not collecting:
-                # always keep rolling pre-stimulus buffer topped up
                 pre_buf.append(sample)
                 time_buf.append(ts)
 
-                # check for spacebar trigger
                 if trigger_flag.is_set():
                     trigger_flag.clear()
 
-                    # only collect if we have a full pre-stimulus buffer
                     if len(pre_buf) < pre_samples:
                         print("  Buffer not full yet — wait a moment and try again")
                         continue
 
-                    # lock in this trigger time
-                    current_trigger_time = ts
                     trigger_times.append(ts)
-
-                    # start collecting post-stimulus samples
                     collecting = True
                     post_buf   = []
                     n          = len(epochs) + 1
                     print(f"  Trigger {n} captured at t={ts:.3f} — collecting {POST_MS}ms...")
 
             else:
-                # collecting post-stimulus window
                 post_buf.append(sample)
 
                 if len(post_buf) >= post_samples:
-                    # we have enough — assemble the full epoch
-                    epoch_samples = list(pre_buf) + post_buf  # 1200ms total
+                    epoch_samples = list(pre_buf) + post_buf
                     epoch_array   = np.array(epoch_samples).T  # (n_channels, n_samples)
 
                     epochs.append(epoch_array)
