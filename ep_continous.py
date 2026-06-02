@@ -5,7 +5,7 @@ import queue
 import threading
 
 # Config all the window timing
-WINDOW_MS  = 500  # Time between windows (non-overlapping stride), in ms
+WINDOW_MS = 1000  # Time between windows (non-overlapping stride), in ms
 OVERLAP_MS = 200  # How far back into the previous window each new window reaches, in ms
 # So each window actually contains WINDOW_MS + OVERLAP_MS ms of raw EEG data
 
@@ -39,9 +39,9 @@ for i in range(n_ch):
     ch = ch.next_sibling() # Walk to the next channel node
 
 # These are samples / channel of course
-window_samples  = int((WINDOW_MS  / 1000) * srate) # Samples in one stride
+window_samples = int((WINDOW_MS  / 1000) * srate) # Samples in one stride
 overlap_samples = int((OVERLAP_MS / 1000) * srate) # Samples of lookback overlap
-total_samples   = window_samples + overlap_samples  # Samples per emitted window
+total_samples = window_samples + overlap_samples  # Samples per emitted window
 
 print(f"Connected: {n_ch} channels, sampled at {srate} Hz")
 print(f"Channels: {channel_names}")
@@ -55,20 +55,18 @@ buf = deque(maxlen=total_samples)
 samples_since_last = 0 # Counts new samples since the last window was emitted
 
 # This queue passes finished windows to the pipeline worker thread
-# Shape of each item: (n_channels, total_samples) - ready for preprocessing and inference
+# Shape of each item: (n_channels, total_samples), ready for preprocessing and inference
 window_queue: "queue.Queue[np.ndarray]" = queue.Queue()
 
-
 # This is where the ML pipeline will live once it's built
-# Right now it's a stub - just receives the window and does nothing with it
-def process_window(epoch_array: np.ndarray) -> None:
-    # epoch_array shape is (n_channels, total_samples)
-    # TODO: preprocessing → model inference → output
-    pass
-
+# Right now it's a stub and just receives the window and does nothing with it
+def process_window(epoch_array: np.ndarray):
+    np.savez(f'window_{window_count}.npz', data=epoch_array)
+    window_count += 1
+    print(f"  Window {window_count} saved. Shape: {epoch_array.shape}")
 
 # This worker drains the queue so the main acquisition loop never blocks
-def pipeline_worker() -> None:
+def pipeline_worker():
     while True:
         try:
             epoch_array = window_queue.get(timeout=0.5)
@@ -79,10 +77,9 @@ def pipeline_worker() -> None:
             if stop_flag.is_set():
                 break
 
-
 # This is all the state stuff
 stop_flag = threading.Event() # Flag indicating the pipeline should shut down
-window_count = 0              # Running tally of windows emitted
+window_count = 0 # Running tally of windows emitted
 
 worker = threading.Thread(target=pipeline_worker, daemon=True)
 worker.start()
