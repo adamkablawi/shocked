@@ -3,6 +3,7 @@ import os
 import numpy as np
 from collections import deque
 import queue
+from datetime import datetime
 import threading
 
 # Config all the window timing
@@ -60,8 +61,9 @@ samples_since_last = 0 # Counts new samples since the last window was emitted
 window_queue: "queue.Queue[np.ndarray]" = queue.Queue()
 
 # To be deleted, just for data collection for a fake ML model
+date = datetime.now().strftime("%Y%m%d_%H%M%S")
 parent_path = os.getcwd()
-folder_path = os.path.join(parent_path, "trials")
+folder_path = os.path.join(parent_path, f"trials_{date}")
 if not os.path.exists(folder_path):
     os.makedirs(folder_path)
 
