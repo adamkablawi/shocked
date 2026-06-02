@@ -1,10 +1,33 @@
 import pylsl
-import os
+import pickle
 import numpy as np
 from collections import deque
+from scipy.signal import welch
 import queue
-from datetime import datetime
 import threading
+
+# Just to test the ML pipeline with a fake model (kmeans clustering)
+_BANDS = {"delta": (0.5, 4), "theta": (4, 8), "alpha": (8, 13), "beta": (13, 30), "gamma": (30, 100)}
+
+def _band_power(psd, freqs, fmin, fmax):
+    mask = (freqs >= fmin) & (freqs <= fmax)
+    return np.trapz(psd[mask], freqs[mask])
+
+def _extract_features(window, fs):
+    features = []
+    for ch in range(window.shape[0]):
+        freqs, psd = welch(window[ch], fs=fs, nperseg=min(128, window.shape[1]))
+        for fmin, fmax in _BANDS.values():
+            features.append(_band_power(psd, freqs, fmin, fmax))
+    return np.array(features)
+
+_model_artifact = None
+try:
+    with open("eeg_kmeans_model.pkl", "rb") as _f:
+        _model_artifact = pickle.load(_f)
+    print("Loaded eeg_kmeans_model.pkl — inference enabled.")
+except FileNotFoundError:
+    print("eeg_kmeans_model.pkl not found — inference disabled.")
 
 # Config all the window timing
 WINDOW_MS = 1000  # Time between windows (non-overlapping stride), in ms
@@ -60,21 +83,16 @@ samples_since_last = 0 # Counts new samples since the last window was emitted
 # Shape of each item: (n_channels, total_samples), ready for preprocessing and inference
 window_queue: "queue.Queue[np.ndarray]" = queue.Queue()
 
-# To be deleted, just for data collection for a fake ML model
-date = datetime.now().strftime("%Y%m%d_%H%M%S")
-parent_path = os.getcwd()
-folder_path = os.path.join(parent_path, f"trials_{date}")
-if not os.path.exists(folder_path):
-    os.makedirs(folder_path)
-
-# This is where the ML pipeline will live once it's built
-# Right now it's a stub and just receives the window and does nothing with it
+# This is where the ML pipeline lives, as of now uses the kmeans clustering model
 def process_window(epoch_array: np.ndarray):
-    try:
-        np.savez(f'{folder_path}/window_{window_count}.npz', data=epoch_array)
-        print(f"  Window {window_count} saved. Shape: {epoch_array.shape}")
-    except window_count == 0:
-        pass # Just to avoid the error of trying to save the first window with no overlap data
+    if _model_artifact is None:
+        print(f"  Window {window_count}: no model loaded, skipping inference.")
+        return
+    feats = _extract_features(epoch_array, srate).reshape(1, -1)
+    feats_scaled = _model_artifact["scaler"].transform(feats)
+    cluster = int(_model_artifact["model"].predict(feats_scaled)[0])
+    pc = _model_artifact["pca"].transform(feats_scaled)[0]
+    print(f"  Window {window_count}: cluster={cluster}  PC1={pc[0]:+.2f}  PC2={pc[1]:+.2f}")
 
 # This worker drains the queue so the main acquisition loop never blocks
 def pipeline_worker():
