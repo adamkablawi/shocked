@@ -23,11 +23,11 @@ def _extract_features(window, fs):
 
 _model_artifact = None
 try:
-    with open("eeg_kmeans_model.pkl", "rb") as _f:
+    with open("ml/eeg_kmeans_fake.pkl", "rb") as _f:
         _model_artifact = pickle.load(_f)
-    print("Loaded eeg_kmeans_model.pkl — inference enabled.")
+    print("Loaded eeg_kmeans_fake.pkl, inference enabled.")
 except FileNotFoundError:
-    print("eeg_kmeans_model.pkl not found — inference disabled.")
+    print("eeg_kmeans_fake.pkl not found, inference disabled.")
 
 # Config all the window timing
 WINDOW_MS = 1000  # Time between windows (non-overlapping stride), in ms
