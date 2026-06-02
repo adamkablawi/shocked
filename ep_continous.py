@@ -61,9 +61,11 @@ window_queue: "queue.Queue[np.ndarray]" = queue.Queue()
 # This is where the ML pipeline will live once it's built
 # Right now it's a stub and just receives the window and does nothing with it
 def process_window(epoch_array: np.ndarray):
-    np.savez(f'window_{window_count}.npz', data=epoch_array)
-    window_count += 1
-    print(f"  Window {window_count} saved. Shape: {epoch_array.shape}")
+    try:
+        np.savez(f'window_{window_count}.npz', data=epoch_array)
+        print(f"  Window {window_count} saved. Shape: {epoch_array.shape}")
+    except window_count == 0:
+        pass
 
 # This worker drains the queue so the main acquisition loop never blocks
 def pipeline_worker():
