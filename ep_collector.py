@@ -7,10 +7,9 @@ import os
 import msvcrt
 from datetime import datetime
 
-# Config all the epoch timing and channels
+# Config all the epoch timing
 PRE_MS = 200 # Time pre live epoch
 POST_MS = 1000 # Time of live epoch
-CHANNEL_NAMES = ['F3', 'F4', 'C3', 'Cz', 'C4', 'P3', 'P4'] # Names of all EEG Channels
 
 # Config all the files and directory jargon
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__)) # Path Directory
@@ -36,7 +35,19 @@ info = inlet.info()
 srate = float(info.nominal_srate())
 # Sample rate, probably around 250 Hz depending on how we set it
 n_ch = info.channel_count()
-# Number of channels, in our case 7
+# Number of channels, depends on the device
+
+# Try to pull the real channel labels straight out of the LSL stream's metadata
+channel_names = []
+ch = info.desc().child('channels').child('channel') # First channel node in the XML
+for i in range(n_ch):
+    label = ch.child_value('label') # Grab this channel's label, empty string if missing
+    if label:
+        channel_names.append(label)
+    else:
+        # Stream didn't bother labeling this one, fall back to a generic name
+        channel_names.append(f'Ch{i + 1}')
+    ch = ch.next_sibling() # Walk to the next channel node
 
 # These are samples / channel of course
 pre_samples = int((PRE_MS / 1000) * srate)
@@ -44,8 +55,9 @@ post_samples = int((POST_MS / 1000) * srate)
 total = pre_samples + post_samples
 
 print(f"Connected: {n_ch} channels, sampled at {srate} Hz")
+print(f"Channels: {channel_names}")
 print(f"Epoch: {total} samples ({pre_samples} pre + {post_samples} post)")
-print("\Press 'Space' to capture epoch and 'Q' to quit + save\n")
+print("Press 'Space' to capture epoch and 'Q' to quit + save\n")
 
 # This is the queue designed to hold the 200ms of pre epoch data
 pre_buf = deque(maxlen = pre_samples)
@@ -87,7 +99,7 @@ def save():
     meta = {
         'srate': srate,
         'n_channels': n_ch,
-        'channel_names': CHANNEL_NAMES[:n_ch],
+        'channel_names': channel_names,
         'pre_ms': PRE_MS,
         'post_ms': POST_MS,
         'n_epochs': len(epochs),
