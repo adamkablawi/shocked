@@ -2,7 +2,6 @@ import pylsl
 import numpy as np
 from collections import deque
 import threading
-import json
 import os
 import msvcrt
 from datetime import datetime
@@ -15,9 +14,7 @@ POST_MS = 1000 # Time of live epoch
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__)) # Path Directory
 SESSION_NAME = f'epochs_{datetime.now().strftime("%Y%m%d_%H%M%S")}' # Creates name for current session
 SESSION_DIR = os.path.join(SCRIPT_DIR, SESSION_NAME) # Creates a path to session director
-os.makedirs(SESSION_DIR, exist_ok=True) # Creates the new directory (to put the json & EEG data)
-NPY_PATH = os.path.join(SESSION_DIR, f'{SESSION_NAME}.npy') # EEG data path
-JSON_PATH = os.path.join(SESSION_DIR, f'{SESSION_NAME}_meta.json') # JSON Metadata path
+os.makedirs(SESSION_DIR, exist_ok=True) # Creates the new directory (to put each epoch file in)
 print(f"Session folder: {SESSION_DIR}\n") # Just to show user the folder
 
 # Connectivity Script
@@ -57,7 +54,7 @@ total = pre_samples + post_samples
 print(f"Connected: {n_ch} channels, sampled at {srate} Hz")
 print(f"Channels: {channel_names}")
 print(f"Epoch: {total} samples ({pre_samples} pre + {post_samples} post)")
-print("Press 'Space' to capture epoch and 'Q' to quit + save\n")
+print("\nPress 'Space' to capture epoch and 'Q' to quit\n")
 
 # This is the queue designed to hold the 200ms of pre epoch data
 pre_buf = deque(maxlen = pre_samples)
@@ -65,12 +62,12 @@ pre_buf = deque(maxlen = pre_samples)
 time_buf = deque(maxlen = pre_samples)
 
 # This is all the state stuff
-epochs = []
-trigger_times = []
 trigger_flag = threading.Event() # Flag indicating beginning of collection
 stop_flag = threading.Event() # Flag indicating quitting the program
 collecting = False # Collecting bool
 post_buf = []
+saved_count = 0 # Running tally of epochs written to disk
+current_trigger_time = None # LSL timestamp of the trigger we're currently collecting
 
 # This function waits for the keyboard's space or q
 def keyboard_listener():
@@ -87,31 +84,23 @@ def keyboard_listener():
 kb = threading.Thread(target=keyboard_listener, daemon=True)
 kb.start()
 
-# This function saves the epochs on quit
-def save():
-    if not epochs:
-        print("No epochs to save.")
-        return
+# This function writes a single finished epoch straight to its own .npz file
+def save_epoch(epoch_array, trigger_time):
+    # Timestamp the filename down to microseconds so triggers never collide
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    path = os.path.join(SESSION_DIR, f'epoch_{stamp}.npz')
 
-    data = np.array(epochs)  # shape is (n_epochs, n_channels, n_samples)
-    np.save(NPY_PATH, data)
-
-    meta = {
-        'srate': srate,
-        'n_channels': n_ch,
-        'channel_names': channel_names,
-        'pre_ms': PRE_MS,
-        'post_ms': POST_MS,
-        'n_epochs': len(epochs),
-        'trigger_times': trigger_times,
-    }
-
-    with open(JSON_PATH, 'w') as f:
-        json.dump(meta, f, indent = 2)
-
-    print(f"\nSaved {len(epochs)} epochs to:")
-    print(f"  Data: {NPY_PATH}")
-    print(f"  Metadata: {JSON_PATH}")
+    # Bundle the data and its metadata together so the file stands on its own
+    np.savez(
+        path,
+        data = epoch_array,              # shape is (n_channels, n_samples)
+        srate = srate,
+        channel_names = np.array(channel_names),
+        pre_ms = PRE_MS,
+        post_ms = POST_MS,
+        trigger_time = trigger_time,     # LSL timestamp of the trigger
+    )
+    return path
 
 # This is the main loop (we try unless there is a keyboard interrupt)
 try:
@@ -139,11 +128,10 @@ try:
                         continue
 
                     # Lock in the trigger timestamp and start collecting post-stimulus
-                    trigger_times.append(timestamp)
+                    current_trigger_time = timestamp
                     collecting = True
                     post_buf = []
-                    n = len(epochs) + 1
-                    print(f"  Trigger {n} captured at t = {timestamp:.3f}. Collecting {POST_MS}ms:")
+                    print(f"  Trigger {saved_count + 1} captured at t = {timestamp:.3f}. Collecting {POST_MS}ms:")
 
             else:
                 # We're in the post-stimulus window, keep appending samples
@@ -155,18 +143,20 @@ try:
                     # Switch so shape is (n_channels, n_samples) not (n_samples, n_channels)
                     epoch_array = np.array(epoch_samples).T
 
-                    # Store the finished epoch and reset for the next one
-                    epochs.append(epoch_array)
+                    # Save this epoch to its own file right now, then reset for the next one
+                    path = save_epoch(epoch_array, current_trigger_time)
+                    saved_count += 1
                     collecting = False
                     post_buf = []
 
-                    print(f"  Epoch {len(epochs)} complete. Shape: {epoch_array.shape}")
+                    print(f"  Epoch {saved_count} complete. Shape: {epoch_array.shape}")
+                    print(f"  Saved: {path}")
                     print(f"  Press 'Space' for next epoch, 'Q' to quit\n")
 
 except KeyboardInterrupt:
     print("\nInterrupted.")
 
 finally:
-    # Always save on the way out, whether Q was pressed or Ctrl+C
+    # Nothing to flush, epochs are already on disk. Just stop and report.
     stop_flag.set()
-    save()
+    print(f"\nDone. {saved_count} epochs saved in:\n  {SESSION_DIR}")
