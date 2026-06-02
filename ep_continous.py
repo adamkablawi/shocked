@@ -1,4 +1,5 @@
 import pylsl
+import os
 import numpy as np
 from collections import deque
 import queue
@@ -58,14 +59,20 @@ samples_since_last = 0 # Counts new samples since the last window was emitted
 # Shape of each item: (n_channels, total_samples), ready for preprocessing and inference
 window_queue: "queue.Queue[np.ndarray]" = queue.Queue()
 
+# To be deleted, just for data collection for a fake ML model
+parent_path = os.getcwd()
+folder_path = os.path.join(parent_path, "trials")
+if not os.path.exists(folder_path):
+    os.makedirs(folder_path)
+
 # This is where the ML pipeline will live once it's built
 # Right now it's a stub and just receives the window and does nothing with it
 def process_window(epoch_array: np.ndarray):
     try:
-        np.savez(f'window_{window_count}.npz', data=epoch_array)
+        np.savez(f'{folder_path}/window_{window_count}.npz', data=epoch_array)
         print(f"  Window {window_count} saved. Shape: {epoch_array.shape}")
     except window_count == 0:
-        pass
+        pass # Just to avoid the error of trying to save the first window with no overlap data
 
 # This worker drains the queue so the main acquisition loop never blocks
 def pipeline_worker():
