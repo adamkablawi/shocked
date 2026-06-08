@@ -8,12 +8,12 @@ import queue
 import threading
 
 # Each window contains WINDOW_MS + OVERLAP_MS ms of raw EEG data
-WINDOW_MS = 1000  # Time between windows (non-overlapping stride), in ms
-OVERLAP_MS = 200  # How far back into the previous window each new window reaches, in ms
+WINDOW_MS = 1500  # Time between windows (non-overlapping stride), in ms
+OVERLAP_MS = 2000  # How far back into the previous window each new window reaches, in ms
 
-# --- Filter configuration (all the knobs in one place) ---
+# Filter configuration
 BANDPASS_LOW_HZ  = 0.0     # set to None to skip highpass
-BANDPASS_HIGH_HZ = 40.0    # set to None to skip lowpass; must be < srate/2
+BANDPASS_HIGH_HZ = 100.0   # set to None to skip lowpass; must be < srate/2
 NOTCH_HZ         = 50.0    # set to None to skip; 50.0 outside the Americas, 60 in
 NOTCH_Q          = 25.0
 FILTER_ORDER     = 4
@@ -24,9 +24,8 @@ def _build_filters(fs):
     nyq = fs / 2
     bp = None
     if BANDPASS_LOW_HZ is not None and BANDPASS_HIGH_HZ is not None:
-        assert BANDPASS_HIGH_HZ < nyq, f"Lowpass {BANDPASS_HIGH_HZ} >= Nyquist {nyq}"
-        bp = butter(FILTER_ORDER, [BANDPASS_LOW_HZ, BANDPASS_HIGH_HZ],
-                    btype='band', fs=fs)
+        assert (BANDPASS_HIGH_HZ < nyq, f"Lowpass {BANDPASS_HIGH_HZ} >= Nyquist {nyq}")
+        bp = butter(FILTER_ORDER, [BANDPASS_LOW_HZ, BANDPASS_HIGH_HZ], btype='band', fs=fs)
     elif BANDPASS_LOW_HZ is not None:
         bp = butter(FILTER_ORDER, BANDPASS_LOW_HZ, btype='high', fs=fs)
     elif BANDPASS_HIGH_HZ is not None:
@@ -51,7 +50,6 @@ def _check_edge_safety(total_samples, overlap_samples):
               f"{overlap_samples}; consider increasing OVERLAP_MS.")
 
 def preprocess(epoch):
-    """epoch shape: (n_channels, n_samples). Returns same shape."""
     x = epoch.astype(np.float64, copy=True)
     if USE_DETREND:
         x = detrend(x, axis=1, type='constant')
@@ -136,6 +134,7 @@ worker = threading.Thread(target=pipeline_worker, daemon=True)
 worker.start()
 
 # This is the main loop (we try unless there is a keyboard interrupt)
+# Not to be touched in general
 try:
     while True:
         # Pull whatever samples have built up since the last iteration
