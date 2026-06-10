@@ -1,1 +1,0 @@
-Note: Truncated EMS0010. It was ~80% full. Removed from training set.

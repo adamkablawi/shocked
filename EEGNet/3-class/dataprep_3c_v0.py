@@ -8,6 +8,7 @@ Steps:
     3. Merge labels: min_intensity (1) and medium_intensity (2) -> intermediate (1).
        Final label scheme: 0 = no_stim, 1 = intermediate, 2 = max_intensity.
     4. Save to .npz with X, y, sfreq, channel_names, subject_id.
+    5. Epochs remain [-2,+1.5]
 
 Usage:
     python convert_to_npz.py --input_dir path/to/subject_folder --output_file subj01.npz

@@ -1,3 +1,23 @@
+The results here were from the hyperparams as follows:
+  Data range: [-2,+1.5]
+  CLASSES = ['no_stimulation', 'intermediate_intensity', 'max_intensity']
+  N_CLASSES = 3
+  # EEGNet hyperparams (Lawhern et al. 2016, EEGNet-8,2 variant)
+  F1, D, F2 = 8, 2, 16
+  DROPOUT_WITHIN = 0.5
+  DROPOUT_CROSS  = 0.25
+  # Training hyperparams (Lawhern et al. 2016, EEGNet-8,2 variant)
+  EPOCHS = 500
+  BATCH_SIZE = 32
+  PATIENCE_EARLY_STOP = 50
+  PATIENCE_LR_REDUCE  = 20
+  # Random seed for reproducibility
+  SEED = 42
+  np.random.seed(SEED)
+  tf.random.set_seed(SEED)
+
+
+
 Loaded 30 subjects, 4800 total epochs.
   Unique subjects: 30
   Class distribution: {np.int64(0): np.int64(1200), np.int64(1): np.int64(2400), np.int64(2): np.int64(1200)}
