@@ -19,8 +19,8 @@ import os
 import numpy as np
 from scipy.signal import decimate
 
-# --- Configuration ---
-DOWNSAMPLE_FACTOR = 4                    # 1000 Hz -> 250 Hz
+# Config
+DOWNSAMPLE_FACTOR = 4
 TARGET_SFREQ = 250.0
 
 # Label remapping after merging min + medium intensities.
