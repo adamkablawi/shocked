@@ -111,7 +111,7 @@ window_queue: "queue.Queue[np.ndarray]" = queue.Queue()
 # This is where the ML pipeline lives
 def process_window(epoch_array: np.ndarray):
     clean = preprocess(epoch_array)
-    # TODO: EEGNet Model
+    # TODO: Model
     pass
 
 # This worker drains the queue so the main acquisition loop never blocks
