@@ -2,6 +2,10 @@
   "combined": {
     "within": {
       "mode": "within/combined",
+      "families": [
+        "erp",
+        "bp"
+      ],
       "n_subjects": 29,
       "acc_mean": 0.7100222469410457,
       "acc_std": 0.12477655788634884,
@@ -215,6 +219,10 @@
     },
     "loso": {
       "mode": "loso/combined",
+      "families": [
+        "erp",
+        "bp"
+      ],
       "per_subject_norm": true,
       "n_subjects": 29,
       "acc_mean": 0.6169260614290253,
