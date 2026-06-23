@@ -16,7 +16,9 @@ import json
 import numpy as np
 from train_combined import (load_dataset, compare_feature_modes, summary_table,
                             FEATURE_REGISTRY)
+
 DEVICE_CHANNELS = ["FCz", "C4", "Fz", "FC4", "Cz", "C2", "FC2"]  # your 7
+XON_CHANNELS = ["F3", "F4", "C3", "Cz", "C4", "P3", "P4"]
 
 # ─────────────────────────────────────────────
 # CONFIG
@@ -24,17 +26,19 @@ DEVICE_CHANNELS = ["FCz", "C4", "Fz", "FC4", "Cz", "C2", "FC2"]  # your 7
 CONFIG = {
 
     "feature_sets": {
+        "combined": ["erp", "bp"],
         "device_7ch": ["erp", "bp"],
     },
     "feature_opts": {
         "erp": {"feature_set": "custom",
                 "families": ["peak_to_peak", "mean_010_018", "mean_020_028"],
-                "channels": DEVICE_CHANNELS},
-        "bp":  {"channel_set": "custom", "channels": DEVICE_CHANNELS},  # all 5 bands
+                "channels": XON_CHANNELS},
+        "bp":  {"channel_set": "custom", "channels": XON_CHANNELS},  # all 5 bands
     },
     
     "data_folder": "data/og-ds-t-4c",
 
+    # Default:
     # # Named feature sets to compare. Each label maps to a list of families to
     # # concatenate. Use any registered family; mix and match freely.
     # "feature_sets": {
