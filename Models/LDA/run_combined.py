@@ -16,24 +16,36 @@ import json
 import numpy as np
 from train_combined import (load_dataset, compare_feature_modes, summary_table,
                             FEATURE_REGISTRY)
+DEVICE_CHANNELS = ["FCz", "C4", "Fz", "FC4", "Cz", "C2", "FC2"]  # your 7
 
 # ─────────────────────────────────────────────
 # CONFIG
 # ─────────────────────────────────────────────
 CONFIG = {
-    "data_folder": "data/og-ds-t-3c",
 
-    # Named feature sets to compare. Each label maps to a list of families to
-    # concatenate. Use any registered family; mix and match freely.
     "feature_sets": {
-        "combined": ["erp", "bp"],
+        "device_7ch": ["erp", "bp"],
     },
-
-    # Per-family options (constructor kwargs for each extractor).
     "feature_opts": {
-        "erp": {"feature_set": "recommended"},   # recommended|peak|peak_window|full
-        "bp":  {"channel_set": "all60", "relative": False},
+        "erp": {"feature_set": "custom",
+                "families": ["peak_to_peak", "mean_010_018", "mean_020_028"],
+                "channels": DEVICE_CHANNELS},
+        "bp":  {"channel_set": "custom", "channels": DEVICE_CHANNELS},  # all 5 bands
     },
+    
+    "data_folder": "data/og-ds-t-4c",
+
+    # # Named feature sets to compare. Each label maps to a list of families to
+    # # concatenate. Use any registered family; mix and match freely.
+    # "feature_sets": {
+    #     "combined": ["erp", "bp"],
+    # },
+
+    # # Per-family options (constructor kwargs for each extractor).
+    # "feature_opts": {
+    #     "erp": {"feature_set": "recommended"},   # recommended|peak|peak_window|full
+    #     "bp":  {"channel_set": "all60", "relative": False},
+    # },
 
     "validation":      ["within", "loso"],
     "n_splits":        5,
