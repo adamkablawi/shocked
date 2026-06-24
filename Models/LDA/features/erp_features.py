@@ -45,6 +45,7 @@ except Exception:  # sklearn optional for pure extraction use
 # ─────────────────────────────────────────────
 # CONFIG
 # ─────────────────────────────────────────────
+BEST_CHANNELS = ["FCz", "C4", "Fz", "FC4", "Cz", "C2", "FC2", "C3"]
 DEFAULT_CHANNELS = ["C3", "Cz", "C4", "FCz", "FC1", "FC2", "FC3", "FC4"]
 
 # Time windows (seconds). All relative to stimulus onset (t = 0).

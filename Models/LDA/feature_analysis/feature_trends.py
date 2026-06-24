@@ -36,14 +36,13 @@ from train_combined import load_dataset, ModularFeatureExtractor, FEATURE_REGIST
 # CONFIG  (everything in-file; no CLI)
 # ─────────────────────────────────────────────
 CONFIG = {
-    "output_dir":   "Results/LDA_3c/tf_3c",
+    "output_dir":   "Results/LDA_3c/trends_3c",
 
     "data_folder":  "data/og-ds-t-3c",
     "families":     ["erp", "bp"],
     "feature_opts": {
         "erp": {"feature_set": "full"},
-        "bp":  {"channel_set": "all60", "relative": False},
-        "tf":  {"channel_set": "all60"},
+        "bp":  {"channel_set": "all60"},
     },
 
     "top_n":           8,
