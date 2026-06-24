@@ -38,10 +38,10 @@ except Exception:
     class BaseEstimator: ...
     class TransformerMixin: ...
 
-from erp_features import (load_npz_for_features, baseline_sd_outlier_mask,
+from Models.LDA.features.erp_features import (load_npz_for_features, baseline_sd_outlier_mask,
                           ERPFeatureExtractor)
-from bandpower_features import BandPowerExtractor
-from tf_features import TFExtractor
+from Models.LDA.features.bandpower_features import BandPowerExtractor
+from Models.LDA.features.tf_features import TFExtractor
 
 # ─────────────────────────────────────────────
 # FEATURE REGISTRY  (name -> extractor class)
