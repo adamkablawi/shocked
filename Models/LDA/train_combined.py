@@ -41,6 +41,7 @@ except Exception:
 from erp_features import (load_npz_for_features, baseline_sd_outlier_mask,
                           ERPFeatureExtractor)
 from bandpower_features import BandPowerExtractor
+from tf_features import TFExtractor
 
 # ─────────────────────────────────────────────
 # FEATURE REGISTRY  (name -> extractor class)
@@ -51,6 +52,7 @@ from bandpower_features import BandPowerExtractor
 FEATURE_REGISTRY = {
     "erp": ERPFeatureExtractor,
     "bp":  BandPowerExtractor,
+    # "tf": TFExtractor
 }
 
 

@@ -62,7 +62,6 @@ FEATURE_SETS = {
     "full":        ["peak", "window", "baseline", "shape"],
 }
 
-
 # ─────────────────────────────────────────────
 # LOADING (feature-oriented; keeps per-subject grouping intact)
 # ─────────────────────────────────────────────
