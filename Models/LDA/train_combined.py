@@ -42,6 +42,7 @@ from Models.LDA.features.erp_features import (load_npz_for_features, baseline_sd
                           ERPFeatureExtractor)
 from Models.LDA.features.bandpower_features import BandPowerExtractor
 from Models.LDA.features.tf_features import TFExtractor
+from Models.LDA.features.riemann_features import RiemannTangentExtractor
 
 # ─────────────────────────────────────────────
 # FEATURE REGISTRY  (name -> extractor class)
@@ -52,6 +53,7 @@ from Models.LDA.features.tf_features import TFExtractor
 FEATURE_REGISTRY = {
     "erp": ERPFeatureExtractor,
     "bp":  BandPowerExtractor,
+    # "riem": RiemannTangentExtractor,
     # "tf": TFExtractor
 }
 

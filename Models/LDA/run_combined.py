@@ -27,6 +27,7 @@ CONFIG = {
     "feature_sets": {
         "combined":   ["erp", "bp"],
     },
+    
     "feature_opts": {
         "erp": {"feature_set": "full"},
         "bp":  {"channel_set": "all60"},
