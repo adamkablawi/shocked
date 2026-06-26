@@ -1,0 +1,2513 @@
+{
+  "n_classes": 3,
+  "n_subjects": 29,
+  "data_folder": "data/og-ds-t-3c",
+  "candidate_families": [
+    "erp",
+    "bp",
+    "tf"
+  ],
+  "n_candidate_features": 1604,
+  "baseline_erp_bp": {
+    "acc_mean": 0.6278631134467325,
+    "acc_std": 0.08429719096892158,
+    "bal_mean": 0.598706624221798
+  },
+  "full_pool": {
+    "acc_mean": 0.5877192760580703,
+    "acc_std": 0.07884058013936322,
+    "bal_mean": 0.5666954842165621
+  },
+  "selectors": {
+    "fscore": {
+      "curve": [
+        {
+          "k": 10,
+          "acc_mean": 0.5728277480488088,
+          "acc_std": 0.07847584645532762,
+          "bal_mean": 0.507518325303882,
+          "bal_std": 0.1049720302203646
+        },
+        {
+          "k": 20,
+          "acc_mean": 0.5717664293764612,
+          "acc_std": 0.0786482432840696,
+          "bal_mean": 0.5105492421574802,
+          "bal_std": 0.1060858840071665
+        },
+        {
+          "k": 30,
+          "acc_mean": 0.589763128639244,
+          "acc_std": 0.09539734079522788,
+          "bal_mean": 0.5355229254540632,
+          "bal_std": 0.12541599135878728
+        },
+        {
+          "k": 50,
+          "acc_mean": 0.5982792186868137,
+          "acc_std": 0.08349416171626406,
+          "bal_mean": 0.5508785760695407,
+          "bal_std": 0.11352785031685443
+        },
+        {
+          "k": 75,
+          "acc_mean": 0.5840233430787762,
+          "acc_std": 0.07604424654011249,
+          "bal_mean": 0.536656592711177,
+          "bal_std": 0.1027836272949384
+        },
+        {
+          "k": 100,
+          "acc_mean": 0.599609904242816,
+          "acc_std": 0.07924599115232185,
+          "bal_mean": 0.5568128561365829,
+          "bal_std": 0.1108960359805937
+        },
+        {
+          "k": 150,
+          "acc_mean": 0.6070905542842063,
+          "acc_std": 0.0862226174027136,
+          "bal_mean": 0.5652370944601411,
+          "bal_std": 0.11637339882163833
+        },
+        {
+          "k": 200,
+          "acc_mean": 0.6270263306046834,
+          "acc_std": 0.08411970971602774,
+          "bal_mean": 0.5924818949383034,
+          "bal_std": 0.11289371877034421
+        },
+        {
+          "k": 300,
+          "acc_mean": 0.6296577498589632,
+          "acc_std": 0.08070231117059501,
+          "bal_mean": 0.6014532229785279,
+          "bal_std": 0.10944452576281946
+        },
+        {
+          "k": 1604,
+          "acc_mean": 0.5877192760580703,
+          "acc_std": 0.07884058013936322,
+          "bal_mean": 0.5666954842165621,
+          "bal_std": 0.10277200846262699
+        }
+      ],
+      "best_k": 300,
+      "best_bal": 0.6014532229785279,
+      "best_acc": 0.6296577498589632,
+      "n_folds": 29,
+      "family_composition": {
+        "bp": 83,
+        "erp": 60,
+        "tf": 146
+      },
+      "stable_features": [
+        {
+          "feature": "tf:delta_erd_early@F7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:beta@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@Oz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@O1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@Pz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@F3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@Fz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:beta@F2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:beta@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:beta@PO8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:beta@O2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:alpha@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:alpha@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@FT8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@C1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@O2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@F2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@TP8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@PO8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@PO4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@POz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@PO3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@TP7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@C1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@F1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@C1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@F8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_amp@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_amp@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_amp@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_amp@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FT7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@F8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_020_028@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:post_minus_base@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:post_minus_base@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_020_028@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_020_028@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@Fp2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@P4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@Fz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@O2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@Oz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@O1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@T7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@Pz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@Fz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@Pz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_ers_peak@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_ers_peak@TP7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@Fz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@P3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@Pz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@T7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@C5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@TP7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@P2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@Oz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@O2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@C5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@TP7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_late@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@AF8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@CP3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@TP8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@C1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FT7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@F8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@Fp2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_erd_late@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_late@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_late@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_late@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@T8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_late@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@AF8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@F6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@FC5",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:gamma_erd_late@C1",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "erp:pos_amp@FC2",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:gamma_ers_peak@C1",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:gamma_erd_early@CP3",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:beta_erd_late@TP7",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:theta_erd_late@CP2",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "bp:beta@FC4",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "bp:beta@Oz",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "bp:beta@C3",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "bp:delta@FT8",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:theta_erd_late@CPz",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "bp:gamma@FC5",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:gamma_erd_early@Cz",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:beta_erd_late@P7",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:theta_erd_late@C1",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:beta_ers_peak@PO8",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "bp:gamma@T8",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "bp:alpha@CP3",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:beta_erd_early@PO7",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "bp:gamma@AF4",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:gamma_ers_peak@PO4",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P1",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "bp:gamma@F6",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:gamma_erd_early@F6",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:delta_erd_early@Fp1",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "erp:mean_028_040@FC2",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:delta_ers_peak@FCz",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:gamma_erd_late@P5",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:theta_erd_early@C6",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:gamma_ers_peak@O1",
+          "select_freq": 0.8620689655172413
+        },
+        {
+          "feature": "tf:delta_erd_early@Pz",
+          "select_freq": 0.8620689655172413
+        },
+        {
+          "feature": "tf:theta_erd_early@Fp1",
+          "select_freq": 0.8620689655172413
+        },
+        {
+          "feature": "bp:beta@O1",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "tf:gamma_erd_early@PO4",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "tf:gamma_erd_late@P7",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "tf:gamma_erd_early@PO8",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "tf:gamma_ers_peak@PO8",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "bp:gamma@T7",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "tf:beta_erd_early@F2",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "tf:gamma_ers_peak@F6",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "tf:beta_ers_peak@FC5",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "tf:gamma_erd_late@P1",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "tf:gamma_ers_peak@F3",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "tf:gamma_erd_early@P6",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "tf:gamma_erd_early@C1",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "tf:beta_ers_peak@P7",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "bp:beta@P8",
+          "select_freq": 0.7241379310344828
+        },
+        {
+          "feature": "tf:theta_erd_early@FC1",
+          "select_freq": 0.7241379310344828
+        },
+        {
+          "feature": "tf:gamma_erd_late@TP8",
+          "select_freq": 0.7241379310344828
+        },
+        {
+          "feature": "tf:gamma_erd_late@P6",
+          "select_freq": 0.7241379310344828
+        },
+        {
+          "feature": "bp:delta@CPz",
+          "select_freq": 0.6896551724137931
+        },
+        {
+          "feature": "tf:delta_erd_peak@C2",
+          "select_freq": 0.6551724137931034
+        },
+        {
+          "feature": "tf:delta_erd_early@AF7",
+          "select_freq": 0.6551724137931034
+        },
+        {
+          "feature": "tf:delta_erd_late@PO8",
+          "select_freq": 0.6206896551724138
+        },
+        {
+          "feature": "erp:mean_020_028@C3",
+          "select_freq": 0.6206896551724138
+        },
+        {
+          "feature": "bp:delta@CP2",
+          "select_freq": 0.6206896551724138
+        },
+        {
+          "feature": "tf:gamma_erd_late@O2",
+          "select_freq": 0.6206896551724138
+        }
+      ]
+    },
+    "mrmr": {
+      "curve": [
+        {
+          "k": 10,
+          "acc_mean": 0.5745898028031635,
+          "acc_std": 0.07855587803502412,
+          "bal_mean": 0.50967087245574,
+          "bal_std": 0.10636892371990112
+        },
+        {
+          "k": 20,
+          "acc_mean": 0.5912772975633891,
+          "acc_std": 0.08968173841188248,
+          "bal_mean": 0.5363803118693536,
+          "bal_std": 0.11982920915522374
+        },
+        {
+          "k": 30,
+          "acc_mean": 0.5969741141984881,
+          "acc_std": 0.08515836203819542,
+          "bal_mean": 0.5458406106158179,
+          "bal_std": 0.11321194437874448
+        },
+        {
+          "k": 50,
+          "acc_mean": 0.5958588830643203,
+          "acc_std": 0.07699307382608954,
+          "bal_mean": 0.547325965160627,
+          "bal_std": 0.10518305594968612
+        },
+        {
+          "k": 75,
+          "acc_mean": 0.6116859845613978,
+          "acc_std": 0.07333403649654305,
+          "bal_mean": 0.5698477352874423,
+          "bal_std": 0.0995521834383509
+        },
+        {
+          "k": 100,
+          "acc_mean": 0.6046164250275542,
+          "acc_std": 0.0737336593820237,
+          "bal_mean": 0.5635698858883403,
+          "bal_std": 0.09753163777001898
+        },
+        {
+          "k": 150,
+          "acc_mean": 0.6094923401156284,
+          "acc_std": 0.08071403347753414,
+          "bal_mean": 0.5713403979760892,
+          "bal_std": 0.10881580289639081
+        },
+        {
+          "k": 200,
+          "acc_mean": 0.6210885636839355,
+          "acc_std": 0.0800467885920299,
+          "bal_mean": 0.5872842915130814,
+          "bal_std": 0.10838201573880665
+        },
+        {
+          "k": 300,
+          "acc_mean": 0.6250540862549222,
+          "acc_std": 0.08423235651851989,
+          "bal_mean": 0.5925964574322565,
+          "bal_std": 0.11264095188573853
+        },
+        {
+          "k": 1604,
+          "acc_mean": 0.5877192760580703,
+          "acc_std": 0.07884058013936322,
+          "bal_mean": 0.5666954842165621,
+          "bal_std": 0.10277200846262699
+        }
+      ],
+      "best_k": 300,
+      "best_bal": 0.5925964574322565,
+      "best_acc": 0.6250540862549222,
+      "n_folds": 29,
+      "family_composition": {
+        "bp": 59,
+        "erp": 71,
+        "tf": 161
+      },
+      "stable_features": [
+        {
+          "feature": "tf:gamma_ers_peak@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:alpha@P4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@Pz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@F3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@Fz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:beta@PO8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:alpha@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:alpha@P2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:alpha@P1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:alpha@CP3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:alpha@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:theta@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@C1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:delta@FC5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@Oz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@O2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_late@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@CP3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@C1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FT7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@F8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@F7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@F2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@PO4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@POz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@P1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@C1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "bp:gamma@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_ers_peak@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_amp@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:peak_to_peak@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_latency@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_amp@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:pos_amp@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_latency@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:rise_slope@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:auc_rect@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:post_minus_base@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:post_minus_base@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:base_mean@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:base_mean@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:base_mean@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:base_mean@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:base_mean@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:base_mean@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:base_mean@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:base_mean@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_028_040@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_020_028@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_020_028@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_020_028@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_020_028@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@FC4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:mean_010_018@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_peak@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:delta_erd_early@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_erd_peak@FT8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@T7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@Fz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@F6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@FC2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@T8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_erd_late@TP7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@O2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@O1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@P3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@Pz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_early@Fz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_ers_peak@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_erd_peak@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_erd_peak@P7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@Pz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@P3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@TP7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@T8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@O2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@P3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@CP5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@T7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@C3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@FC1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_ers_peak@Fz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_peak@FT8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_peak@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_peak@T8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_peak@CP6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_peak@P8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_peak@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_peak@T7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@TP7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@C5",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@FC3",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:gamma_erd_late@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_erd_late@PO7",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "erp:neg_amp@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_peak@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_early@Oz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_peak@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_late@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_late@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_late@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_late@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_late@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_late@CP1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_early@O2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_peak@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_peak@CP4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@F8",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_late@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_late@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_late@C1",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_late@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@FCz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@F6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@C2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@C6",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_erd_peak@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@CPz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@C4",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:beta_erd_early@F2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@CP2",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:theta_erd_early@Cz",
+          "select_freq": 1.0
+        },
+        {
+          "feature": "tf:alpha_ers_peak@C4",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:alpha_erd_peak@CP6",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "bp:beta@CP4",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "bp:gamma@P7",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:delta_erd_peak@Cz",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "bp:gamma@P6",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:beta_erd_early@FC1",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:beta_erd_peak@C2",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:theta_erd_early@FC2",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:beta_erd_early@FC2",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:beta_ers_peak@PO8",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:beta_erd_early@PO7",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "erp:pos_latency@C3",
+          "select_freq": 0.9655172413793104
+        },
+        {
+          "feature": "tf:theta_erd_early@AF8",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:theta_erd_peak@C2",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:delta_ers_peak@FCz",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:theta_erd_late@CP2",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:delta_erd_early@F6",
+          "select_freq": 0.9310344827586207
+        },
+        {
+          "feature": "tf:delta_erd_early@Fp2",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:gamma_erd_late@T8",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:theta_erd_early@FC6",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:delta_erd_early@FC5",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:beta_ers_peak@TP7",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:gamma_erd_late@TP8",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:gamma_erd_early@P1",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:beta_erd_early@P8",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:gamma_ers_peak@TP8",
+          "select_freq": 0.896551724137931
+        },
+        {
+          "feature": "tf:beta_erd_peak@TP7",
+          "select_freq": 0.8620689655172413
+        },
+        {
+          "feature": "tf:theta_erd_early@CP1",
+          "select_freq": 0.8620689655172413
+        },
+        {
+          "feature": "bp:beta@F2",
+          "select_freq": 0.8620689655172413
+        },
+        {
+          "feature": "erp:pos_amp@C3",
+          "select_freq": 0.8620689655172413
+        },
+        {
+          "feature": "bp:theta@C1",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "tf:gamma_erd_early@CP3",
+          "select_freq": 0.8275862068965517
+        },
+        {
+          "feature": "tf:theta_erd_early@C5",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "tf:beta_erd_late@P7",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "bp:delta@FT7",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "tf:alpha_erd_late@CP3",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "bp:beta@PO7",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "bp:gamma@CP3",
+          "select_freq": 0.7931034482758621
+        },
+        {
+          "feature": "tf:gamma_ers_peak@C5",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "bp:alpha@CP6",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "bp:gamma@AF4",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "tf:beta_erd_peak@C3",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "tf:beta_erd_peak@T7",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "tf:gamma_erd_early@F8",
+          "select_freq": 0.7586206896551724
+        },
+        {
+          "feature": "tf:delta_erd_peak@FT7",
+          "select_freq": 0.7241379310344828
+        },
+        {
+          "feature": "tf:gamma_erd_early@PO8",
+          "select_freq": 0.7241379310344828
+        },
+        {
+          "feature": "tf:gamma_erd_peak@FC6",
+          "select_freq": 0.6896551724137931
+        },
+        {
+          "feature": "tf:gamma_erd_early@Oz",
+          "select_freq": 0.6896551724137931
+        },
+        {
+          "feature": "tf:beta_erd_peak@F3",
+          "select_freq": 0.6896551724137931
+        },
+        {
+          "feature": "bp:theta@C4",
+          "select_freq": 0.6896551724137931
+        },
+        {
+          "feature": "tf:delta_erd_late@PO4",
+          "select_freq": 0.6896551724137931
+        },
+        {
+          "feature": "tf:theta_erd_early@FC1",
+          "select_freq": 0.6896551724137931
+        },
+        {
+          "feature": "tf:gamma_erd_late@P7",
+          "select_freq": 0.6896551724137931
+        },
+        {
+          "feature": "bp:beta@O2",
+          "select_freq": 0.6551724137931034
+        },
+        {
+          "feature": "tf:gamma_ers_peak@Pz",
+          "select_freq": 0.6551724137931034
+        },
+        {
+          "feature": "tf:alpha_erd_early@CP3",
+          "select_freq": 0.6551724137931034
+        },
+        {
+          "feature": "tf:theta_erd_peak@CP6",
+          "select_freq": 0.6551724137931034
+        },
+        {
+          "feature": "tf:theta_erd_early@P2",
+          "select_freq": 0.6551724137931034
+        },
+        {
+          "feature": "tf:alpha_ers_peak@CP4",
+          "select_freq": 0.6551724137931034
+        },
+        {
+          "feature": "tf:theta_erd_early@F2",
+          "select_freq": 0.6206896551724138
+        },
+        {
+          "feature": "bp:alpha@P5",
+          "select_freq": 0.6206896551724138
+        }
+      ]
+    }
+  }
+}
