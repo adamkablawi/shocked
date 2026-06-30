@@ -1,0 +1,2 @@
+- Retraining the model for a binary classification (tolerable/intolderable) to collapse the bottom 3 into 1 class vs intolerable for 120/40 balance dataset. (How to address class imbalance) This is done for extracting the most disciminable features for the intolerable class.
+- Go back to 3 class classification to test it for the closed loop.
