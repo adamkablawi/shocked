@@ -1,0 +1,50 @@
+{
+  "model": "final_stacking_ensemble",
+  "data": "data/og-ds-t-3c",
+  "families": [
+    "erp",
+    "bp",
+    "tf",
+    "conn"
+  ],
+  "class_names": [
+    "no_stimulation",
+    "medium_intensity",
+    "max_intensity"
+  ],
+  "meta_family_weights": {
+    "erp": 0.3233066991858599,
+    "bp": 0.2906634727786004,
+    "tf": 0.09069738398187539,
+    "conn": 0.2953324440536239
+  },
+  "loso": {
+    "acc_mean": 0.6658337845258075,
+    "acc_std": 0.08494363646832687,
+    "bal_mean": 0.6295605715394821,
+    "bal_std": 0.13225454354449778,
+    "per_class_recall": [
+      0.5455341506129597,
+      0.7758241758241758,
+      0.5669291338582677
+    ],
+    "confusion": [
+      [
+        623,
+        509,
+        10
+      ],
+      [
+        283,
+        1765,
+        227
+      ],
+      [
+        9,
+        486,
+        648
+      ]
+    ]
+  },
+  "saved_to": "/Users/adamkablawi/Desktop/Shocked/ConnModel/conn_stacking_ensemble.joblib"
+}

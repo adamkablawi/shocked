@@ -1,0 +1,52 @@
+{
+  "model": "final_stacking_ensemble",
+  "data": "data/og-ds-t-3c",
+  "families": [
+    "erp",
+    "bp",
+    "tf",
+    "riem",
+    "conn"
+  ],
+  "class_names": [
+    "no_stimulation",
+    "medium_intensity",
+    "max_intensity"
+  ],
+  "meta_family_weights": {
+    "erp": 0.28334596178626814,
+    "bp": 0.24341500009243888,
+    "tf": 0.08316240862457305,
+    "riem": 0.13706334367700607,
+    "conn": 0.25301328581967586
+  },
+  "loso": {
+    "acc_mean": 0.6808027135639895,
+    "acc_std": 0.08970058472227926,
+    "bal_mean": 0.6483397504682166,
+    "bal_std": 0.13570275194343007,
+    "per_class_recall": [
+      0.5814360770577933,
+      0.7793406593406593,
+      0.5835520559930009
+    ],
+    "confusion": [
+      [
+        664,
+        473,
+        5
+      ],
+      [
+        279,
+        1773,
+        223
+      ],
+      [
+        6,
+        470,
+        667
+      ]
+    ]
+  },
+  "saved_to": "/Users/adamkablawi/Desktop/Shocked/FinalModels/FullStackModel/full_stacking_ensemble.joblib"
+}

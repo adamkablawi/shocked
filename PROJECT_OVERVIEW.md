@@ -148,6 +148,17 @@ projection at the geometric mean → flat vector, each dim an electrode pair. `a
 → 60×61/2 = **1830 features**. Captures *spatial coupling* the per-channel families
 discard. **Weak as a standalone block, valuable as a stacking base model.**
 
+### 3.5 `conn` — phase functional connectivity (`ConnModel/features/conn_features.py`)
+A neuroscience-grounded alternative/complement to `riem`, derived from the
+functional-connectivity analysis (5.13). Per trial, per band, it computes
+**single-trial phase connectivity** between three regions (FC / C / P):
+- **PLV** — phase-locking value over the post-stim window: `|<exp(i·Δφ(t))>_t|`.
+- **iPLV** — imaginary PLV (volume-conduction robust).
+6 region pairs (3 between + 3 within) × 5 bands × 2 measures = **60 features**,
+each interpretable (e.g. `conn:iplv_delta_FC-C`). 30× smaller than `riem` and
+physiologically named. On the 7-channel XON montage the regions are
+F={F3,F4} / C={C3,Cz,C4} / P={P3,P4}.
+
 ---
 
 ## 4. Validation Methodology
@@ -180,9 +191,10 @@ Standard pieces:
 
 | Model | Dataset | Within acc/bal | LOSO acc/bal | Notes |
 |---|---|---|---|---|
-| **Stack (4-family) — BEST** | 3c 40/80/40 | **73.0 / 70.2** | **66.7 / 63.0** | erp+bp+tf+riem, meta-learner (5.8) |
-| **Final deployable model** | 3c 40/80/40 | — | 66.7 / 63.0 | same stack fit on all 29 subj, saved to disk (5.9) |
-| **Stack, 7-channel (XON)** | 3c 40/80/40 | 69.1 / 65.4 | 64.0 / 59.8 | 7 electrodes, ~294 features (5.11) |
+| **Stack (5-family) — BEST** | 3c 40/80/40 | — | **68.1 / 64.8** | erp+bp+tf+riem+**conn**; +conn gives a marginal gain (5.13) |
+| Stack (4-family, riem) | 3c 40/80/40 | 73.0 / 70.2 | 66.7 / 63.0 | erp+bp+tf+riem, meta-learner (5.8 / 5.13) |
+| Stack (4-family, conn) | 3c 40/80/40 | — | 66.6 / 63.0 | conn *replaces* riem — matches it (5.13) |
+| **Stack, 7-channel (XON)** | 3c 40/80/40 | 69.1 / 65.4 | 64.0 / 59.8 | 7 electrodes, ~294 features (5.11); 5-family XON ≈ tie (5.13) |
 | LDA erp+bp (primary baseline) | 3c 40/80/40 | 71.1 / 70.3 | 62.8 / 59.9 | reference (5.1) |
 | LDA erp+bp, 7-channel (central) | 3c 40/80/40 | 68.7 / 67.7 | 63.1 / 59.4 | BEST_CHANNELS montage (5.2) |
 | EEGNet | 3c 40/80/40 | 63.4 / 64.7 | 59.8 / 60.8 | deep net, all 60 ch (5.5) |
@@ -495,6 +507,71 @@ justifies the erp/bp features, extended to the whole stack.
 
 ---
 
+### 5.13 FUNCTIONAL CONNECTIVITY — analysis, `conn` family, and 5-family stack
+**Analysis folder:** `data/ConnectivityAnalysis/` (`connectivity_analysis.py`,
+`results/`). **Model folders:** `FinalModels/` (see file map). Motivation: replace
+the opaque Riemannian covariance with a **neuroscience-grounded phase-connectivity**
+feature between fronto-central (FC), central (C), and parietal (P) regions.
+
+**(a) The connectivity analysis** (group-level, 3-class `og-ds-t-3c`). Per band,
+per condition, per subject: PLV and iPLV (imaginary, volume-conduction-robust)
+across trials between FC/C/P, baseline-corrected, Friedman-tested across the three
+intensities. **Finding — intensity modulates phase-locked inter-region coupling,
+dose-dependently:**
+- **Low frequencies (delta/theta/alpha) rise with intensity** across all three
+  region pairs (largest: delta FC-C induced PLV +0.028 → +0.064 → **+0.099**;
+  iPLV delta/theta significant p≈0 for FC-C, FC-P, C-P).
+- **Gamma coupling falls with intensity** (FC-C −0.027, p=0.0001).
+- Interpretation: stronger EMS drives widespread **low-frequency phase
+  synchronization** across the sensory network, with high-frequency desynchrony —
+  interpretable, physiologically named, unlike Riemannian covariance.
+- Figures: `dose_response_PLV.png`, `dose_response_iPLV.png`, `region_heatmaps.png`,
+  `timecourse.png`; stats in `connectivity_results.json`.
+
+**(b) `conn` as a per-trial feature family** (3.5): the single-trial form of the
+above (region-pair PLV/iPLV per band, 60 features).
+
+**(c) Models — connectivity matches Riemannian, and combining both gives a
+marginal gain.** All 3-class, all-60-channel, LOSO (parallelised, saved models
+where noted):
+
+| Model (folder) | Families | LOSO acc / bal | 4th/5th-family weights |
+|---|---|---|---|
+| **`FinalModels/FinalModel` — BEST** | erp+bp+tf+**riem+conn** (5) | **68.1 / 64.8** | riem 0.14, **conn 0.25** |
+| `FinalModels/FourRiemModel` | erp+bp+tf+riem (4) | 66.7 / 63.0 | riem 0.20 |
+| `FinalModels/FourConnModel` | erp+bp+tf+conn (4) | 66.6 / 63.0 | **conn 0.30** |
+
+**Key results:**
+- **`conn` replaces `riem` with no loss** (66.6 vs 66.7 acc / both 63.0 bal), and the
+  meta-learner **trusts it more** (weight 0.30 vs riem's 0.20) — while using only 60
+  interpretable features vs riem's 1830.
+- **Using BOTH riem and conn is the new best model** — **LOSO 68.1% / 64.8% bal**, a
+  **marginal but real +1.8 bal over the 4-family stacks** (and ~+5 over the erp+bp
+  baseline). Both spatial families keep weight (conn 0.25, riem 0.14), so they are
+  **complementary, not redundant** (phase-locking vs covariance capture partly
+  different spatial structure).
+
+**(d) 7-channel (XON) variants** (within / LOSO; `FinalModels/Xon*`):
+
+| Model | Families | Within acc/bal | LOSO acc/bal |
+|---|---|---|---|
+| `XonFourRiemModel` | 4 (riem) | 69.1 / 65.4 | 64.0 / 59.8 |
+| `XonFourConnModel` | 4 (conn) | 67.5 / 63.4 | 63.6 / 59.1 |
+| `XonFinalModel` | 5 (riem+conn) | 68.8 / 65.2 | 64.3 / 60.2 |
+
+On the reduced montage conn ≈ riem again, but the **5-family gain is only marginal
+(≈ tie)** — with just 7 electrodes and 3 tiny regions there isn't enough spatial
+information for two spatial families to add much. **The +conn improvement is a
+full-cap phenomenon.**
+
+**Bottom line:** the connectivity analysis yielded a **marginal accuracy increase** —
+the 5-family stack (adding phase connectivity to the Riemannian model) is the new
+best decoder at **LOSO 68.1% / 64.8% balanced** — while also giving a far more
+interpretable, physiologically-named spatial feature that can stand in for
+Riemannian covariance entirely.
+
+---
+
 ## 6. Overarching Narrative
 
 1. **Problem:** decode graded EMS intensity from single-trial EEG; end goal is a
@@ -519,7 +596,12 @@ justifies the erp/bp features, extended to the whole stack.
    (larger central SEP + elevated fronto-central gamma).
 8. **Explainability:** the stack is a linear glass box — its weights map to known
    intensity-coding physiology and every decision traces to neural generators.
-9. **The persistent limit:** within-subject ≫ LOSO everywhere → the real frontier
+9. **Functional connectivity:** phase coupling (PLV/iPLV) between FC/C/P regions is
+   dose-dependently modulated by intensity (low-freq up, gamma down). As a `conn`
+   feature family it **matches Riemannian while being 30× smaller and interpretable**,
+   and adding *both* riem+conn yields the **best model (LOSO 68.1% / 64.8% bal)** — a
+   **marginal but real gain** from the connectivity work.
+10. **The persistent limit:** within-subject ≫ LOSO everywhere → the real frontier
    is **inter-subject variability** (cross-subject domain alignment), not more
    features.
 
@@ -560,13 +642,15 @@ Models/
   LDA-Stacking-2c/                       # 2-class biomarker stack (5.10)
     stacking.py  feature_analysis_2c.py
 
-FinalModel/                              # DEPLOYABLE final model (5.9)
-  train_final_model.py  features/  train_combined.py
-  final_stacking_ensemble.joblib         # <-- saved model + weights
-  model_card.json
-
-XonModel/                                # 7-channel XON stack (5.11)
-  stacking_xon.py  run_xon_loso.py  xon_stacking.json
+FinalModels/                             # deployable / final models (5.9, 5.13)
+  FinalModel/          # BEST: 5-family stack erp+bp+tf+riem+conn (LOSO 68.1/64.8)
+                       #   full_stacking_ensemble.joblib + model_card.json
+  FourRiemModel/       # 4-family (riem)  final_stacking_ensemble.joblib
+  FourConnModel/       # 4-family (conn)  conn_stacking_ensemble.joblib
+  XonFinalModel/       # 7-ch 5-family (riem+conn)  xon_full_stacking.json
+  XonFourRiemModel/    # 7-ch 4-family (riem)       xon_stacking.json
+  XonFourConnModel/    # 7-ch 4-family (conn)       xon_conn_stacking.json
+  (each has features/ [incl. conn_features.py] + train_combined.py + its train script)
 
 data/
   og/                                    # raw 1000 Hz source trios (29 subjects)
@@ -576,6 +660,8 @@ data/
   og-ds-t-2c-tol/                        # 2-class tolerable/intolerable
   dataprep.py                            # 4-class + 3-class 40/80/40
   dataprep_2class_tolerance.py           # 2-class prep
+  ConnectivityAnalysis/                  # phase-connectivity analysis (5.13a)
+    connectivity_analysis.py  results/   #   PLV/iPLV findings + 4 figures + json
 ```
 
 > Notes: (1) `og-ds-t-3c-bal` is regenerated on demand and is frequently absent
