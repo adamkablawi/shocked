@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS Controller</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>EMS Controller</h1>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Disconnected</span>
+            </div>
+        </header>
+
+        <!-- Connection Section -->
+        <section class="card">
+            <h2>Connection</h2>
+            <button id="connectBtn" class="btn btn-primary">Connect to Device</button>
+            <button id="disconnectBtn" class="btn btn-secondary" disabled>Disconnect</button>
+            <div id="statusMessage" class="status-message"></div>
+        </section>
+
+        <!-- Tabs for Main/Config -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="main">Main Control</button>
+            <button class="tab-btn" data-tab="config">Configuration</button>
+        </div>
+
+        <!-- Main Control Tab -->
+        <div id="main" class="tab-content active">
+            <!-- Mode Selection -->
+            <section class="card">
+                <h2>Waveform Mode</h2>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="mode" value="ems" checked>
+                        <span>EMS</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="mode" value="sine">
+                        <span>Sine Wave</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Intensity -->
+            <section class="card">
+                <label class="label">Intensity: <span id="intensityValue">0.15</span></label>
+                <input type="range" id="intensitySlider" min="0" max="0.25" step="0.01" value="0.15" class="slider">
+            </section>
+
+            <!-- Sine Frequency -->
+            <section class="card">
+                <label class="label">Sine Frequency: <span id="sineFreqValue">40</span> Hz</label>
+                <input type="range" id="sineFreqSlider" min="1" max="200" value="40" class="slider">
+            </section>
+
+            <!-- EMS Frequency -->
+            <section class="card">
+                <label class="label">EMS Frequency: <span id="emsFreqValue">35</span> Hz (min 10)</label>
+                <input type="range" id="emsFreqSlider" min="10" max="200" value="35" class="slider">
+            </section>
+
+            <!-- Gap -->
+            <section class="card">
+                <label class="label">Gap: <span id="gapValue">100</span> μs</label>
+                <input type="range" id="gapSlider" min="0" max="2000" value="100" class="slider">
+            </section>
+
+            <!-- Pulse Width -->
+            <section class="card">
+                <label class="label">Pulse Width: <span id="pulseWidthValue">20</span> %</label>
+                <input type="range" id="pulseWidthSlider" min="1" max="100" value="20" class="slider">
+            </section>
+
+            <!-- Offset -->
+            <section class="card">
+                <label class="label">Offset</label>
+                <input type="number" id="offsetInput" placeholder="0.50" step="0.01" min="0" max="1" value="0.50" class="input">
+            </section>
+
+            <!-- Burst Duration -->
+            <section class="card">
+                <label class="label">Burst Duration: <span id="burstDurationValue">1.0</span> sec (0.1 - 60)</label>
+                <input type="range" id="burstDurationSlider" min="0.1" max="60.0" step="0.1" value="1.0" class="slider">
+                <input type="number" id="burstDurationInput" placeholder="or enter 0.1-60" step="0.1" min="0.1" max="60" class="input" style="margin-top: 8px;">
+            </section>
+
+            <!-- Send Settings -->
+            <section class="card">
+                <button id="sendSettingsBtn" class="btn btn-primary" onclick="sendAllSettings()">Send All Settings</button>
+            </section>
+
+            <!-- Burst Controls -->
+            <section class="card">
+                <h2>Burst Control</h2>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="alternatingBurstCheckbox">
+                    <span>Alternate 0.5 sec ON / 0.5 sec OFF</span>
+                </label>
+                <button id="sendBurstBtn" class="btn btn-success" onclick="sendBurst()">Send Burst</button>
+                <button id="stopBtn" class="btn btn-danger" onclick="sendStop()">Stop</button>
+            </section>
+
+            <!-- Raw Command -->
+            <section class="card">
+                <h2>Raw Command</h2>
+                <input type="text" id="rawCommandInput" placeholder="e.g., b=2.0, amp=0.2" class="input">
+                <button class="btn btn-primary" onclick="sendRawCommand()">Send Command</button>
+            </section>
+
+            <!-- Log -->
+            <section class="card">
+                <h2>Log</h2>
+                <div id="logArea" class="log-area"></div>
+                <button class="btn btn-secondary" onclick="clearLog()">Clear Log</button>
+            </section>
+        </div>
+
+        <!-- Configuration Tab -->
+        <div id="config" class="tab-content">
+            <section class="card">
+                <h2>Save Configuration</h2>
+                <input type="text" id="configName" placeholder="Configuration name" class="input">
+                <button class="btn btn-primary" onclick="saveConfiguration()">Save Current Config</button>
+            </section>
+
+            <section class="card">
+                <h2>Load Configuration</h2>
+                <select id="configSelect" class="input"></select>
+                <button class="btn btn-primary" onclick="loadConfiguration()">Load Config</button>
+                <button class="btn btn-danger" onclick="deleteConfiguration()">Delete Config</button>
+            </section>
+
+            <section class="card">
+                <h2>Configuration Preview</h2>
+                <pre id="configPreview" class="config-preview"></pre>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

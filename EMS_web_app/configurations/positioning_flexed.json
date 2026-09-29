@@ -1,0 +1,10 @@
+{
+  "mode": "ems",
+  "intensity": 0.2,
+  "sineFreq": 47,
+  "emsFreq": 20,
+  "gap": 90,
+  "pulseWidth": 20,
+  "offset": 0.5,
+  "burstDuration": 60
+}

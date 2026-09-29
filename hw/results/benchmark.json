@@ -1,0 +1,23 @@
+{
+  "sw_a_sklearn_single": {
+    "median_us": 527.125,
+    "p99_us": 590.1805899999999,
+    "mean_us": 531.923216
+  },
+  "sw_c_numpy_single": {
+    "median_us": 37.458,
+    "p99_us": 47.083,
+    "mean_us": 38.25362666666666
+  },
+  "sw_b_sklearn_batched": {
+    "median_us": 6.518393640350877,
+    "p99_us": 6.583306175438596,
+    "mean_us": 6.522706505847953
+  },
+  "hw_compute": {
+    "latency_cycles": 1845.0,
+    "latency_us": 18.45,
+    "period_cycles": 1846.0,
+    "trials_per_s": 54171.18093174431
+  }
+}

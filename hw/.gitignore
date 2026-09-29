@@ -1,0 +1,8 @@
+# generated / large
+build/
+cache/
+tb/out/
+tb/vectors/
+*.jou
+*.log
+.Xil/
